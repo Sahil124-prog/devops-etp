@@ -5,6 +5,7 @@ pipeline{
         DOCKER_USER_NAME = "sahilrajput062004"   
         IMAGE_NAME = "devops-etp"                
         IMAGE_TAG = "latest"
+        KUBECONFIG       = "C:\\ProgramData\\Jenkins\\.jenkins\\.kube\\config"
     }
     stages{
         stage('Clone code'){
@@ -37,7 +38,7 @@ pipeline{
         stage('Deploy k8s'){
             steps{
                 echo "Deploying deployment.yml"
-                bat "kubectl apply -f k8s/deployment.yml"
+                bat "kubectl apply -f k8s/deployment.yml --validate=false"
             }
         }
 

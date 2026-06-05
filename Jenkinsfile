@@ -53,6 +53,7 @@ pipeline{
         stage('Running the container'){
             steps{
                 echo "Running the container..."
+                bat "docker rm -f %CONTAINER_NAME% || exit 0"
                 bat "docker run -d --name %CONTAINER_NAME% -p 3000:3000 %DOCKER_USER_NAME%/%IMAGE_NAME%:%IMAGE_TAG%"
             }
         }

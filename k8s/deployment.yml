@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name : express-app
+  name: express-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app : express-app
+      app: express-app
   template:
     metadata:
       labels:
-        app : express-app
+        app: express-app
     spec:
       containers:
-        - name : express-app-container
-          image : node:18-alpine
-          imagePullPolicy : Always
-          ports :
+        - name: express-app-container
+          image: sahilrajput062004/devops-etp:latest
+          imagePullPolicy: Always
+          ports:
             - containerPort: 3000
 
 ---
@@ -24,12 +24,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name : express-app-service
+  name: express-app-service
 spec:
-  type : NodePort
+  type: NodePort
   selector:
-    app : express-app
+    app: express-app
   ports:
-    - port : 3000
-      targetPort : 3000
-      nodePort : 30002
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30002
